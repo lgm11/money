@@ -6,7 +6,7 @@
 </template>
 
 <script >
- let importAll = (requireContext) => requireContext.keys().forEach(requireContext);//写了这句代码就能使用importAll
+  let importAll = (requireContext) => requireContext.keys().forEach(requireContext);//写了这句代码就能使用importAll
     try {
         importAll(require.context('../assets/icons',true,/\.svg$/))
     } catch (error) {
