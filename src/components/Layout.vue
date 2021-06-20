@@ -1,6 +1,6 @@
 <template>
      <div class="layout-wrapper">
-        <div class="content">
+        <div class="content" :class="classPrefix && `${classPrefix}-content`">
             <slot/>
             <!-- //插槽，当调用这个组件的时候，里面写的东西就插入到这里 -->
         </div>
@@ -11,7 +11,7 @@
 
 <script>
     export default {
-        
+        props:['classPrefix']
     }
 </script>
 

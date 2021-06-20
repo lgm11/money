@@ -13,6 +13,7 @@
   -webkit-font-smoothing: antialiased;//优化苹果系统的显示
   -moz-osx-font-smoothing: grayscale;//优化苹果系统的显示
   color: #333;
+  font-size: 16px;
   line-height: 1.5;
 }
 </style>
