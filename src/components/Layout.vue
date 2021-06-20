@@ -1,5 +1,5 @@
 <template>
-     <div class="nav-wrapper">
+     <div class="layout-wrapper">
         <div class="content">
             <slot/>
             <!-- //插槽，当调用这个组件的时候，里面写的东西就插入到这里 -->
@@ -16,7 +16,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .nav-wrapper{
+    .layout-wrapper{
             border: 1px solid green;
             display: flex;//flex布局
             flex-direction: column;//子元素流动方向打竖
