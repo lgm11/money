@@ -7,24 +7,36 @@
         </div>
 </template>
 
-<script>
-    export default {
-        data(){
-            return{
-                type:'-'//'-'表示支出,'+'表示收入
-            }
-        },
-        methods:{
-            selectedType(type){
-                if(type !== '-' && type !== '+'){
-                    throw new Error('type is unknown')
-                }else{
-                    this.type = type
-                }
-            }
+<script lang="ts">
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+@Component
+export default class Type extends Vue{
+    type='-';
+    selectedType(type:string){
+        if(type !== '-' && type !== '+'){
+            throw new Error('type is unknown')
+        }else{
+            this.type = type
         }
-        
-    }
+    }    
+}
+    // export default {
+    //     data(){
+    //         return{
+    //             type:'-'//'-'表示支出,'+'表示收入
+    //         }
+    //     },
+    //     methods:{
+    //         selectedType(type){
+    //             if(type !== '-' && type !== '+'){
+    //                 throw new Error('type is unknown')
+    //             }else{
+    //                 this.type = type
+    //             }
+    //         }
+    //     }  
+    // }
 </script>
 
 <style lang="scss" scoped>
