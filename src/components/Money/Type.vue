@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component} from 'vue-property-decorator';
 @Component
 export default class Type extends Vue{
     type='-';
@@ -19,24 +19,8 @@ export default class Type extends Vue{
         }else{
             this.type = type
         }
-    }    
+    } 
 }
-    // export default {
-    //     data(){
-    //         return{
-    //             type:'-'//'-'表示支出,'+'表示收入
-    //         }
-    //     },
-    //     methods:{
-    //         selectedType(type){
-    //             if(type !== '-' && type !== '+'){
-    //                 throw new Error('type is unknown')
-    //             }else{
-    //                 this.type = type
-    //             }
-    //         }
-    //     }  
-    // }
 </script>
 
 <style lang="scss" scoped>
