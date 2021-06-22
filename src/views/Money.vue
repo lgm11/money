@@ -1,25 +1,36 @@
 <template>
     <Layout class-prefix="layout">
-        <NumberPad/>
-        <Type />
-        <Notes/>
-        <Tags :dataSource.sync="tags"/>
+        <NumberPad @update:value = 'onUpdateAccount'/>
+        <Type @update:value = "onUpdateType"/>
+        <Notes @update:value = "onUpdateNotes"/>
+        <Tags :dataSource.sync="tags" @update:selected = "onUpdateTags"/>
     </Layout>
 </template>
 
-<script >
+<script lang="ts">
+import Vue from 'vue';
 import Tags from '@/components/Money/Tags.vue'
 import Notes from '@/components/Money/Notes.vue'
 import Type from '@/components/Money/Type.vue'
 import NumberPad from '@/components/Money/NumberPad.vue'
-    export default {
-        components:{Tags,Notes,Type,NumberPad},
-        data(){
-            return{
-                tags:['衣','食','住','行']
-            }
-        }
+import { Component, Prop} from 'vue-property-decorator';
+@Component({components:{Tags,Notes,Type,NumberPad}})
+export default class Money extends Vue{
+    tags=['衣','食','住','行'];
+    onUpdateTags(tag:string[]){
+        console.log(tag);
     }
+    onUpdateNotes(value:string){
+        console.log(value);
+    }
+    onUpdateType(value:string){
+        console.log(value);
+    }
+    onUpdateAccount(value:string){
+        console.log(value);
+    }
+}
+    
 </script>
 <style lang="scss">
     .layout-content{
