@@ -39,7 +39,6 @@ export default class Money extends Vue{
     saveRecord(){
         const record2 = JSON.parse(JSON.stringify(this.record))
         this.recordList.push(record2)
-        console.log(this.recordList);
     }
     @Watch('recordList')
     onRecordListchanged(){

@@ -1,8 +1,8 @@
 <template>
     <div>
             <ul class="type">
-                <li :class="type ==='-' && 'selected'" @click="selectedType('-')">支出</li>
-                <li :class="type ==='+' && 'selected'" @click="selectedType('+')">收入</li>
+                <li :class="value ==='-' && 'selected'" @click="selectedType('-')">支出</li>
+                <li :class="value ==='+' && 'selected'" @click="selectedType('+')">收入</li>
             </ul>
         </div>
 </template>
@@ -14,7 +14,7 @@ import { Component, Prop, Watch} from 'vue-property-decorator';
 export default class Type extends Vue{
 
     @Prop() readonly value!:string;
-    type = this.value
+    // type = this.value   
     
     selectedType(type:string){
         if(type !== '-' && type !== '+'){
@@ -22,6 +22,7 @@ export default class Type extends Vue{
         }
         this.$emit('update:value',type);
     }
+    
 }
 </script>
 
