@@ -14,20 +14,29 @@ import Notes from '@/components/Money/Notes.vue'
 import Type from '@/components/Money/Type.vue'
 import NumberPad from '@/components/Money/NumberPad.vue'
 import { Component, Prop} from 'vue-property-decorator';
+
+type Record = {
+    tags:string[]
+    notes:string
+    type:string
+    account:number
+}
+
 @Component({components:{Tags,Notes,Type,NumberPad}})
 export default class Money extends Vue{
     tags=['衣','食','住','行'];
+    record:Record = {tags:[],notes:'',type:'-',account:0}
     onUpdateTags(tag:string[]){
-        console.log(tag);
+        this.record.tags = tag
     }
     onUpdateNotes(value:string){
-        console.log(value);
+        this.record.notes = value
     }
     onUpdateType(value:string){
-        console.log(value);
+        this.record.type = value
     }
     onUpdateAccount(value:string){
-        console.log(value);
+        this.record.account = parseFloat(value)
     }
 }
     

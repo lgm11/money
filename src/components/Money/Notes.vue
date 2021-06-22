@@ -3,8 +3,8 @@
             <label class="notes">
                 <span class="name">备注</span>
                 <input type="text" 
-                v-model="value"
-                placeholder="请输入备注">
+                    v-model="value"
+                    placeholder="请输入备注">
             </label>
         </div>
 </template>
@@ -17,7 +17,7 @@ export default class Notes extends Vue{
       value=''; 
       @Watch('value')
       onValueChanged(value:string){
-        this.$emit('updata:value',value)
+        this.$emit('update:value',value)
       }
     }
 </script>
