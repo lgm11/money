@@ -1,4 +1,4 @@
-const model = {
+const recordListModel = {
     fetch(){
         return JSON.parse(window.localStorage.getItem('recordList')||'[]')as RecordItem[]
     },//获取数据，读
@@ -10,4 +10,4 @@ const model = {
     }
 }
 
-export default model
+export default recordListModel
