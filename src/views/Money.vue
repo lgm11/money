@@ -6,7 +6,6 @@
         <Tags :dataSource.sync="tags" @update:selected = "onUpdateTags"/>
     </Layout>
 </template>
-
 <script lang="ts">
 import Vue from 'vue';
 import Tags from '@/components/Money/Tags.vue'
@@ -19,8 +18,8 @@ const recordList = model.fetch()
 @Component({components:{Tags,Notes,Type,NumberPad}})
 export default class Money extends Vue{
     tags=['衣','食','住','行'];
-    recordList = recordList;
-    record = {tags:[],notes:'',type:'-',account:0}
+    recordList :RecordItem[] = recordList;
+    record :RecordItem = {tags:[],notes:'',type:'-',account:0}
     onUpdateTags(tag:string[]){
         this.record.tags = tag
     }
@@ -31,7 +30,7 @@ export default class Money extends Vue{
         this.record.account = parseFloat(value)
     }
     saveRecord(){
-        const record2 = model.clone(this.record)
+        const record2 :RecordItem = model.clone(this.record)
         record2.createAt = new Date()
         this.recordList.push(record2)
     }
