@@ -2,7 +2,11 @@
     <Layout class-prefix="layout">
         <NumberPad @update:value = 'onUpdateAccount' @submit="saveRecord"/>
         <Type :value.sync="record.type"/>
-        <Notes @update:value = "onUpdateNotes"/>
+        <div class="notes">
+            <Notes fieldName="备注"
+                    placeholder="在这里输入备注"
+                    @update:value = "onUpdateNotes"/>
+        </div>
         <Tags :dataSource.sync="tags" @update:selected = "onUpdateTags"/>
     </Layout>
 </template>
@@ -44,12 +48,17 @@ export default class Money extends Vue{
     
 </script>
 <style lang="scss">
+    .notes{
+        background: f5f5f5;
+    }
     .layout-content{
         display: flex;
         flex-direction: column-reverse;
     }
+    
 </style>
-
+    
 <style lang="scss" scoped>
+
 @import '~@/assets/style/helper.scss';
 </style>
