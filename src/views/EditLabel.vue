@@ -5,7 +5,7 @@
             <span class="title">编辑标签</span>
             <span class="rightIcon"></span>
         </div>
-        <Notes class="notes-wrapper" fieldName="标签名" placeholder="请输入标签名"/>
+        <Notes :value="tag.name" class="notes-wrapper" fieldName="标签名" placeholder="请输入标签名"/>
         <div class="button-wrapper">
              <Button>删除标签</Button>
         </div>
@@ -20,13 +20,14 @@ import Notes from '@/components/Money/Notes.vue'
 import Button from  '@/components/Button.vue'
 @Component({components: {Notes,Button}})
     export default class Labels extends Vue{
+        tag?:{id:string,name:string}=undefined
         created(){
             const id = this.$route.params.id
             tagListModel.fetch()
             const tags = tagListModel.data
             const tag = tags.filter(t => t.id === id)[0]
             if(tag){
-
+                this.tag = tag
             }else{
                 this.$router.replace('/404')
             }
@@ -40,9 +41,6 @@ import Button from  '@/components/Button.vue'
         padding: 12px 16px;
         display: flex;
         justify-content: space-between;
-        > .title{
-           
-        }
         > .leftIcon{
              width: 20px;
             height: 20px;
