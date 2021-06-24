@@ -4,8 +4,8 @@
                 <button @click="create">新增标签</button>
             </div>
             <ul class="current">
-                <li v-for="tag in dataSource" :key="tag" 
-                @click="selected(tag)" :class="selectedTags.indexOf(tag)>=0 && 'selected'">{{tag}}</li>
+                <li v-for="tag in dataSource" :key="tag.id" 
+                @click="selected(tag)" :class="selectedTags.indexOf(tag)>=0 && 'selected'">{{tag.name}}</li>
             <!-- 遍历外部传来的数组 -->
             </ul>
         </div>
