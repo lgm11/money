@@ -4,7 +4,7 @@ const recordListModel = {
         this.data = JSON.parse(window.localStorage.getItem('recordList')||'[]')as RecordItem[]
         return this.data
     },//获取数据，读
-    save(data:RecordItem[]){
+    save(){
         window.localStorage.setItem('recordList',JSON.stringify(this.data))
     },//保存数据，写
     clone(data:RecordItem[] | RecordItem){
