@@ -1,13 +1,19 @@
 <template>
     <layout>
         <div class="navBar">
-            <Icon class="leftIcon" name="left"/>
+            <Icon class="leftIcon" name="left" @click.native="goback"/>
             <span class="title">编辑标签</span>
             <span class="rightIcon"></span>
         </div>
-        <Notes :value="tag.name" class="notes-wrapper" fieldName="标签名" placeholder="请输入标签名"/>
+        <div class="notes-wrapper">
+            <Notes 
+                @update:value = "update"
+                :value="tag.name"  
+                fieldName="标签名" 
+                placeholder="请输入标签名"/>
+        </div>
         <div class="button-wrapper">
-             <Button>删除标签</Button>
+             <Button @click="remove">删除标签</Button>
         </div>
     </layout>
 </template>
@@ -32,6 +38,23 @@ import Button from  '@/components/Button.vue'
                 this.$router.replace('/404')
             }
         }
+        update(name:string){
+            if(this.tag){
+                tagListModel.update(this.tag.id,name)
+            }
+        }
+        remove(){
+            if(this.tag){
+                if(tagListModel.remove(this.tag.id)){
+                    this.$router.back()
+                }else{
+                    window.alert('删除失败')
+                }
+            }
+        }  
+        goback(){
+            this.$router.back()
+        }  
     }
 </script>
 
