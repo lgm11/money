@@ -12,6 +12,8 @@ interface Window {
     removeTag:(id:string)=>boolean
     updateTag:(id:string,name:string)=>'success' | 'not found' | 'duplicated'
     findTag:(id:string)=>Tag | undefined
+    recordList:RecordItem[]
+    createRecord:(record:RecordItem)=>void
 }
 type Tag = {
     id:string

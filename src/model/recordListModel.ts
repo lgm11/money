@@ -10,6 +10,7 @@ const recordListModel = {
         const record2 :RecordItem = clone(record);
         record2.createAt = new Date()
         this.data.push(record2)
+        this.save()
     },
     save(){
         window.localStorage.setItem('recordList',JSON.stringify(this.data))

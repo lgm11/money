@@ -7,12 +7,19 @@ import Nav from '@/components/Nav.vue'//引入Nav
 import Layout from  '@/components/Layout.vue'
 import Icon from '@/components/Icon.vue'
 import tagListModel from './model/tagListModel'
+import recordListModel from './model/recordListModel'
 
 Vue.config.productionTip = false
 Vue.component('Nav',Nav)//全局组件Nav
 Vue.component('Layout',Layout)//全局组件Layout
 Vue.component('Icon',Icon)
 
+
+
+//record store
+window.recordList =recordListModel.fetch()
+window.createRecord = (record:RecordItem)=>recordListModel.create(record)
+//tag store
 window.tagList = tagListModel.fetch()
 window.createTag = (name:string)=>{
   const message = tagListModel.create(name)
