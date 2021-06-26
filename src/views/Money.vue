@@ -18,7 +18,6 @@ import Type from '@/components/Money/Type.vue'
 import NumberPad from '@/components/Money/NumberPad.vue'
 import { Component, Watch} from 'vue-property-decorator';
 import recordListModel from '@/model/recordListModel'
-import tagListModel from '@/model/tagListModel'
 const recordList = recordListModel.fetch()
 @Component({components:{Tags,Notes,Type,NumberPad}})
 export default class Money extends Vue{

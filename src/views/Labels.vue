@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import tagListModel from '@/model/tagListModel';
 import Vue from 'vue';
 import { Component} from 'vue-property-decorator';
 import Button from  '@/components/Button.vue'
