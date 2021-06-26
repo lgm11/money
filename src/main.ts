@@ -16,32 +16,6 @@ Vue.component('Icon',Icon)
 
 
 
-//record store
-window.recordList =recordListModel.fetch()
-window.createRecord = (record:RecordItem)=>recordListModel.create(record)
-//tag store
-window.tagList = tagListModel.fetch()
-window.createTag = (name:string)=>{
-  const message = tagListModel.create(name)
-    if(message === 'duplicated'){
-      window.alert('标签名重复了')
-    }else if(message === 'success'){
-      window.alert('添加成功')
-    }
-}
-window.removeTag=(id:string)=>{
-    if(tagListModel.remove(id)){
-        return true
-    }else{
-        return false
-    }
-}
-window.updateTag=(id:string,name:string)=>{
-  return tagListModel.update(id,name)
-}
-window.findTag=(id:string)=>{
-  return window.tagList.filter(t => t.id === id)[0]
-}
 
 new Vue({
   router,
