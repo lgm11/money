@@ -20,10 +20,9 @@ import { Component, Watch} from 'vue-property-decorator';
 import recordListModel from '@/model/recordListModel'
 import tagListModel from '@/model/tagListModel'
 const recordList = recordListModel.fetch()
-const tagList = tagListModel.fetch()
 @Component({components:{Tags,Notes,Type,NumberPad}})
 export default class Money extends Vue{
-    tags=tagList;
+    tags=window.tagList;
     recordList :RecordItem[] = recordList;
     record :RecordItem = {tags:[],notes:'',type:'-',account:0}
     onUpdateTags(tag:string[]){
