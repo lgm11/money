@@ -4,7 +4,7 @@
                 <button @click="create">新增标签</button>
             </div>
             <ul class="current">
-                <li v-for="tag in dataSource" :key="tag.id" 
+                <li v-for="tag in tagList" :key="tag.id" 
                 @click="selected(tag)" :class="selectedTags.indexOf(tag)>=0 && 'selected'">{{tag.name}}</li>
             <!-- 遍历外部传来的数组 -->
             </ul>
@@ -12,11 +12,12 @@
 </template>
 
 <script lang="ts">
+import store from '@/store/index2';
 import Vue from 'vue';
 import { Component, Prop} from 'vue-property-decorator';
 @Component
 export default class Tags extends Vue{
-    @Prop()dataSource:string[] | undefined;//引用名为dataSource的外部数据
+    tagList = store.fetchTags()
     selectedTags:string[] = [];
     selected(tag:string){
         const index = this.selectedTags.indexOf(tag);
@@ -29,11 +30,11 @@ export default class Tags extends Vue{
     }
     create(){
        const name = prompt('请输入标签名')
-       if(name === ''){
-           alert('标签名不能为空')
-       }else{
-           if(this.dataSource){this.$emit('upadata-dataSource',this.dataSource.push(name!))
-       }}    
+       if(!name){
+            window.alert('标签名不能为空')
+            return
+       }
+            store.createTag(name)  
     }
 }
 </script>
