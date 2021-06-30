@@ -18,7 +18,6 @@ import Type from '@/components/Money/Type.vue'
 import NumberPad from '@/components/Money/NumberPad.vue'
 import {Component} from 'vue-property-decorator';
 
-
 @Component({
     components:{Tags,Notes,Type,NumberPad},
     computed:{
