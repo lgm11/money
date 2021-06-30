@@ -16,14 +16,11 @@ import TagHelper from '@/mixins/TagHelper';
 import Vue from 'vue';
 import { mixins } from 'vue-class-component';
 import { Component} from 'vue-property-decorator';
-@Component({
-    computed:{
-        tagList(){
-            return this.$store.state.tagList
-        },
-    }
-})
+@Component
 export default class Tags extends mixins(TagHelper){
+    get tagList(){
+        return this.$store.state.tagList
+    }
     creted(){
         this.$store.commit('fetchTags')
     }
