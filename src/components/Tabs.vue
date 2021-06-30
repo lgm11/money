@@ -1,6 +1,7 @@
 <template>
     <ul class="tabs">
         <li v-for="item in dataSource" :key="item.value"
+        class="tabs-item"
         :class="{selected:item.value === value,[classPrefix+'-tabs-item']:classPrefix}" 
         @click="select(item)">
             {{item.text}}
@@ -29,7 +30,7 @@ export default class Tabs extends Vue{
         background: #c4c4c4;
         display: flex;
         text-align: center;
-        > li{
+        &-item{
             width: 50%;
             height: 64px;
             display: flex;
