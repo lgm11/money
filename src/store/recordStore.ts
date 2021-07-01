@@ -15,7 +15,7 @@ export default{
     recordList :fetchRecords(),
     createRecord : (record:RecordItem)=>{
         const record2 :RecordItem = clone(record);
-        record2.createAt = new Date()
+        record2.createAt = new Date().toISOString()
         data && data.push(record2)
         //data?.push(record2)这是新写法,叫做可选链写法
         saveRecords()

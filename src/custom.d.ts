@@ -3,8 +3,13 @@ type RecordItem = {
     notes:string
     type:string
     account:number
-    createAt?:Date
+    createAt?:string
 }
+type RootState={
+    recordList : RecordItem[],
+      tagList:Tag[],
+      currentTag?:Tag
+  }
 
 interface Window {
   

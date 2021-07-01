@@ -5,11 +5,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-type RootState={
-  recordList : RecordItem[],
-    tagList:Tag[],
-    currentTag?:Tag
-}
+
 const store = new Vuex.Store({
   state: {
     recordList : [],
@@ -22,7 +18,7 @@ const store = new Vuex.Store({
     },
     createRecord(state,record){
       const record2 :RecordItem = clone(record);
-      record2.createAt = new Date()
+      record2.createAt = new Date().toISOString()
       state.recordList.push(record2)
       //data?.push(record2)这是新写法,叫做可选链写法
       store.commit('saveRecords')
