@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-        <ol>
+        <ol v-if="groupedList.length>0">
             <li v-for="(group,index) in groupedList" :key="index">
                 <h3 class="title">{{beautify(group.title)}}
                     <span>💴{{group.total}}</span>
@@ -16,6 +16,10 @@
                 </ol>
             </li>
         </ol>
+        <div v-else class="no-result">
+            没有记账记录
+        <Icon name='cry'/> 
+        </div>
     </Layout>
 </template>
 <style scoped lang="scss">
@@ -67,7 +71,7 @@ export default class Statistics extends Vue{
         }
     }
     tagString(tags:Tag[]){
-        return tags.length === 0 ? '无' : tags.join(',')
+        return tags.length === 0 ? '无' : tags.map(t=>t.name).join('，')
     }
     get recordList(){
         return (this.$store.state as RootState).recordList
@@ -76,6 +80,7 @@ export default class Statistics extends Vue{
         if(this.recordList.length === 0){return []}
         type Result = {title:string,total?:number,items:RecordItem[]}[]
         const newList = clone(this.recordList).filter(r=>r.type === this.type).sort((a,b)=>dayjs(b.createAt).valueOf()-dayjs(a.createAt).valueOf())
+        if(newList.length === 0){return []}
         const result:Result = [{title:dayjs(newList[0].createAt).format('YYYY-MM-DD') ,items:[newList[0]]}]
         for(let i=1;i < newList.length;i++){
             const current = newList[i]
@@ -111,5 +116,9 @@ export default class Statistics extends Vue{
     }
     ::v-deep .interval-tabs-item{
         height: 48px;
+    }
+    .no-result{
+        padding: 16px;
+        text-align: center;
     }
 </style>

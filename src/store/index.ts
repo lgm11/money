@@ -17,17 +17,28 @@ const store = new Vuex.Store({
       state.recordList = JSON.parse(window.localStorage.getItem('recordList')||'[]')as RecordItem[]
     },
     createRecord(state,record){
+      if(!record.tags || record.tags.length === 0){
+        window.alert('请至少选择一个标签')
+      }else{
       const record2 :RecordItem = clone(record);
       record2.createAt = new Date().toISOString()
       state.recordList.push(record2)
       //data?.push(record2)这是新写法,叫做可选链写法
       store.commit('saveRecords')
+      window.alert('记账成功啦~')
+      }
     },
     saveRecords(state){
       window.localStorage.setItem('recordList',JSON.stringify(state.recordList))
     },
     fetchTags(state){
       state.tagList = JSON.parse(window.localStorage.getItem('tagList')||'[]')
+      if(!state.tagList || state.tagList.length === 0){
+        store.commit('createTag','衣')
+        store.commit('createTag','食')
+        store.commit('createTag','住')
+        store.commit('createTag','行')
+      }
     },
     createTag(state,name:string){
       const names = state.tagList.map(item => item.name)
@@ -38,7 +49,7 @@ const store = new Vuex.Store({
         const id = createId().toString()
         state.tagList.push({id,name:name})
         store.commit('saveTags')
-        window.alert('添加成功')
+        // window.alert('添加成功')
     },
     saveTags(state){
       window.localStorage.setItem('tagList',JSON.stringify(state.tagList))

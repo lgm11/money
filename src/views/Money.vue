@@ -5,9 +5,10 @@
         <div class="notes">
             <Notes fieldName="备注"
                     placeholder="在这里输入备注"
+                    :value="record.notes"
                     @update:value = "onUpdateNotes"/>
         </div>
-        <Tags/>
+        <Tags @update:selected='record.tags = $event'/>
     </Layout>
 </template>
 <script lang="ts">
@@ -25,13 +26,15 @@ import {Component} from 'vue-property-decorator';
     components:{Tags,Notes,NumberPad,Tabs},
 })
 export default class Money extends Vue{
-     recordTypeList = recordTypeList
+    
+    recordTypeList = recordTypeList
     get recordList(){
         return this.$store.state.recordList;
     }
     record :RecordItem = {tags:[],notes:'',type:'-',account:0}
     created(){
         this.$store.commit('fetchRecords')
+        this.$store.commit('fetchTags')
     }
     onUpdateNotes(value:string){
         this.record.notes = value
@@ -41,6 +44,7 @@ export default class Money extends Vue{
     }
     saveRecord(){
         this.$store.commit('createRecord',this.record)
+        this.record.notes = ''
     }
 }
     
