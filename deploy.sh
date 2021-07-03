@@ -14,7 +14,7 @@ cd dist
 
 git init
 git add -A
-git commit -m '限制页面宽度'
+git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
