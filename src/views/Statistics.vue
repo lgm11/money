@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-        <div class="chart-wrapper" ref="chartWrapper"><Chart class="chart" :options="x"/></div>
+        <div class="chart-wrapper" ref="chartWrapper"><Chart class="chart" :options="chartOptions"/></div>
         <ol v-if="groupedList.length>0">
             <li v-for="(group,index) in groupedList" :key="index">
                 <h3 class="title">{{beautify(group.title)}}
@@ -52,6 +52,7 @@ import recordTypeList from '@/constants/recordTypeList'
 import dayjs from 'dayjs'
 import clone from '@/lib/clone';
 import Chart from '@/components/Chart.vue'
+import _ from 'lodash'
 
 @Component({
     components:{Tabs,Chart}
@@ -102,12 +103,32 @@ export default class Statistics extends Vue{
     beforeCreate(){
         this.$store.commit('fetchRecords')
     }
-    get x (){
+    get keyValueList (){
+        const today = new Date()
+        const array = []
+        for(let i = 0;i <= 29;i++){
+            const dateString = dayjs(today).subtract(i,'day').format('YYYY-MM-DD')
+            array.push({key:dateString,value:_.find(this.groupedList,{title:dateString})?.total})
+        }
+        array.sort((a,b)=>{
+            if(a.key > b.key){
+                return 1
+            }else if(a.key === b.key){
+                return 0
+            }else{
+                return -1
+            }
+        })
+        return array
+    }
+
+    get chartOptions (){
+        const keys = this.keyValueList.map(item=>item.key)
+        const values = this.keyValueList.map(item=>item.value)
         return{
             tooltip:{
                 show:true,
                 position:'top',
-                
                 triggerOn: "click",
                 formatter: '{c}'
             },
@@ -117,8 +138,13 @@ export default class Statistics extends Vue{
             },
             xAxis: {
                 type: 'category',
-                data: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14','15', '16', '17', '18', '19', '20', '21','22', '23', '24', '25', '26', '27', '28','29', '30',],
-                axisTick:{show:false}
+                data: keys,
+                axisTick:{show:false},
+                axisLabel:{
+                    formatter: function (value:string, index:string) {
+                        return value.substr(5);
+                    }
+                }
             },
             yAxis: {
                 show:false,
@@ -127,7 +153,7 @@ export default class Statistics extends Vue{
             },
             series: [{
                 symbolSize:12,
-                data: [150, 230, 224, 218, 135, 147, 260,150, 230, 224, 0, 135, 147, 260,150, 230, 224, 218, 135, 147, 260,150, 230, 224, 218, 135, 147, 260,150, 230,],
+                data: values,
                 type: 'line',
                 lineStyle: {
                     color: "#666",

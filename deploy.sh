@@ -14,7 +14,7 @@ cd dist
 
 git init
 git add -A
-git commit -m '添加createAt输入框'
+git commit -m '重构代码，写charts样式'
 
 # 部署到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
