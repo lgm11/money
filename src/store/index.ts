@@ -21,7 +21,7 @@ const store = new Vuex.Store({
         window.alert('请至少选择一个标签')
       }else{
       const record2 :RecordItem = clone(record);
-      record2.createAt = new Date().toISOString()
+      record2.createAt = record2.createAt || new Date().toISOString()
       state.recordList.push(record2)
       //data?.push(record2)这是新写法,叫做可选链写法
       store.commit('saveRecords')

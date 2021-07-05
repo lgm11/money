@@ -8,6 +8,13 @@
                     :value="record.notes"
                     @update:value = "onUpdateNotes"/>
         </div>
+        <div class="createdAt">
+            <Notes fieldName="日期"
+                    placeholder="在这里输入日期"
+                    type="date"
+                    :value.sync="record.createAt"
+                    />
+        </div>
         <Tags @update:selected='record.tags = $event'/>
     </Layout>
 </template>
@@ -31,7 +38,7 @@ export default class Money extends Vue{
     get recordList(){
         return this.$store.state.recordList;
     }
-    record :RecordItem = {tags:[],notes:'',type:'-',account:0}
+    record :RecordItem = {tags:[],notes:'',type:'-',account:0,createAt:new Date().toISOString()}
     created(){
         this.$store.commit('fetchRecords')
         this.$store.commit('fetchTags')
