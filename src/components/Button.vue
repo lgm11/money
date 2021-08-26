@@ -16,7 +16,7 @@ import { Component} from 'vue-property-decorator';
 
 <style lang="scss" scoped>
 .button{
-        background: #767676;
+        background: #97d9a1;
         color: white;
         border-radius: 10px;
         border: none;

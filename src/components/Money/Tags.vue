@@ -21,7 +21,7 @@ export default class Tags extends mixins(TagHelper){
     get tagList(){
         return this.$store.state.tagList
     }
-    creted(){
+    created(){
         this.$store.commit('fetchTags')
     }
     selectedTags:string[] = [];
@@ -49,7 +49,7 @@ export default class Tags extends mixins(TagHelper){
            margin-top: 3px;
            flex-wrap: wrap;
            > li{
-               background: #D9D9D9;
+               background: #97d9a1;
                height: 24px;
                line-height: 24px;
                border-radius: 12px;

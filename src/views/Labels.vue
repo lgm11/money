@@ -54,7 +54,7 @@ export default class Labels extends mixins(TagHelper){
         }
     }
     .createTag{//button是内联元素,想要用text-align居中需要用在父元素
-        background: #767676;
+        background: #97d9a1;
         color: white;
         border-radius: 10px;
         border: none;

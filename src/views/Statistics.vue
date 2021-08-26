@@ -1,7 +1,9 @@
 <template>
     <Layout>
         <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-        <div class="chart-wrapper" ref="chartWrapper"><Chart class="chart" :options="chartOptions"/></div>
+        <div class="chart-wrapper" ref="chartWrapper">
+            <Chart class="chart" :options="chartOptions"/>
+        </div>
         <ol v-if="groupedList.length>0">
             <li v-for="(group,index) in groupedList" :key="index">
                 <h3 class="title">{{beautify(group.title)}}
@@ -176,7 +178,7 @@ export default class Statistics extends Vue{
     ::v-deep .type-tabs-item{
         background: white;
         &.selected{
-            background: #c4c4c4;
+            background: #97d9a1;
             &::after{
                 display: none;
             }
